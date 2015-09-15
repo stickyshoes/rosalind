@@ -1,24 +1,26 @@
 #!/usr/bin/python
 
 
-f = open('sample_text.txt' , 'r').readlines()
-total = len(f)
+f = [line.strip() for line in open('sample_text.txt' , 'r').readlines()]
 
-content = ''
+def find_gc_content(strand):
+    return (strand.count('C') + strand.count('G')) * 100.0 / (len(strand) * 1.0)
 
-for word in f:
-    if word[0] == '>':
-        content = word[1:].rstrip()
-       # print content
+name = ""
+content = ""
+gc_content_list = []
 
-c = float(f.count('C'))
-g = float(f.count('G'))
+for line in f:
+    if line[0] == '>':
+        if name:
+            gc_content_list += [(find_gc_content(content), name)]
+            content = ""
+        name = line[1:]
+    else:
+        content = content + line
 
-print c
+gc_content_list += [(find_gc_content(content), name)]
+candidate = sorted(gc_content_list)[-1]
 
-#gc_total = g+c
-#gc_content  = gc_total/ float(total)
-
-#print gc_content
-
-
+print candidate[1]
+print candidate[0]
