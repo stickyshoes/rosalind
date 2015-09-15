@@ -8,7 +8,7 @@ def fib(n, k):
          fib_table.append(fib_table[-1] + fib_table[-2]*k)
    return fib_table
 
-with open('rosalind_fib.txt', 'r') as f:
+with open('rabbits_and_recurrence_data.txt', 'r') as f:
     n, k = f.readline().split()
     print fib(int(n), int(k))[-1]
 
