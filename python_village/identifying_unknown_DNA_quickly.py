@@ -9,13 +9,12 @@ content = ''
 for word in f:
     if word[0] == '>':
         content = word[1:].rstrip()
+       # print content
 
-print content
+c = float(f.count('C'))
+g = float(f.count('G'))
 
-#c = f.count("C")
-#g = f.count("G")
-
-#print c
+print c
 
 #gc_total = g+c
 #gc_content  = gc_total/ float(total)
